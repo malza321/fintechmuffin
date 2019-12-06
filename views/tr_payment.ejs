@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>트레이너 상세</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="css/main.css" />
+        <noscript><link rel="stylesheet" href="css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+        <!-- Wrapper -->
+            <div id="wrapper">
+                <!-- Header -->
+                    <header id="header">
+                        <div class="inner">
+                            <!-- Logo -->
+                           <a href="/" class="logo">
+                                    <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">MU&FIN</span>
+                                </a>
+                        </div>
+                    </header>
+                <!-- Main -->
+                    <div id="main">
+                        <div class="inner">
+                               <header>
+                                       <!-- <h1>This is Phantom, a free, fully responsive site<br />
+                                       template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1> -->
+                                       <p>당신을 위한 스마트 P.T 서비스</p>
+                               </header>
+                            <h1 id = "trainer_name">이관우</h1>
+                            <h2 id = "trainer_center">OOO</h2>
+                            <!-- Image -->
+                                <section>
+                                    <div class="box alt">
+                                        <div class="row gtr-uniform">
+                                           <div style="float:right" id="trainer_picture" class="col-4">
+                                               <span class="image fit"><img src="images/BB.jpg" alt="" />
+                                               </span>
+                                           </div>
+                                           <div style ="float:right">
+                                                   <h2 >트레이너 전문</h2>
+                                                   <p id = "trainer_specialty"></p>                                    
+                                                    <h2>트레이너 경력</h2>
+                                                   <p id = "trainer_career"></p>
+                                                   <ul class="actions">
+                                                           <li><a id = "pay1" href="#menu" class="button primary">1회</a></li>
+                                                           <li><a id = "pay2" href="#menu" class="button primary">10회</a></li>
+                                                           <li><a id = "pay3" href="#menu" class="button primary">30회</a></li>
+                                                   </ul>
+                                                   <nav id="menu">
+                                                        <h2>결제 코드</h2>
+                                                        <ul>
+                                                            <a class="logo" style="float: right">
+                                                                    <span class="symbol"><img src="images/enterqr.png" alt="" /></span><span class="title"></span>
+                                                            </a>
+                                                        </ul>
+                                                    </nav>
+                                           </div>
+                                           <!-- <div class="row">
+                                           <div class="col-6 col-12-medium" style="float: right">
+                                               <ul class="actions">
+                                                   <li><a id = "pay1" href="#" class="button primary">1회</a></li>
+                                                   <li><a id = "pay2" href="#" class="button primary">10회</a></li>
+                                                   <li><a id = "pay3" href="#" class="button primary">30회</a></li>
+                                               </ul>
+                                           </div> -->
+                                   </div>
+                                       </div>
+                                    </div>
+                               </section>
+                        </div>
+                    </div>
+
+5:27 PM
+<!-- Scripts -->
+            <script src="js/jquery.min.js"></script>
+            <script src="js/browser.min.js"></script>
+            <script src="js/breakpoints.min.js"></script>
+            <script src="js/util.js"></script>
+            <script src="js/main.js"></script>
+            <script type="text/javascript" src="scripts/jquery.js"></script>
+            <script type="text/javascript" src="scripts/plugins.js"></script>
+
+            <script>
+            //console.log(sessionStorage.getItem('jwtToken'))	
+           // console.log(sessionStorage.getItem('id'))	
+             $.ajax({
+            url:'http://localhost:3000/tr_payment',
+            type : 'POST',
+            headers:{
+            },
+            data : {
+                id:  sessionStorage.getItem('id')
+            },
+            success:function(data){
+                $("#trainer_name").html(data[0].trainer_name)
+                $("#trainer_specialty").html(data[0].trainer_specialty)
+                $("#trainer_center").html(data[0].trainer_center)
+                $("#trainer_career").html(data[0].trainer_career)
+              //  alert(data[0].trainer_id);
+                console.log(data[0].trainer_id)      
+       
+            }
+        })
+        </script>
+    </body>
+</html>

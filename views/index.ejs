@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MU&FIN 템플렛</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="css/main.css" />
+		<noscript><link rel="stylesheet" href="css/noscript.css" /></noscript>
+	</head>
+
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="/" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">MU&FIN</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">메뉴</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<h2>메뉴</h2>
+					<ul>
+						<li><a href="index">지점찾기</a></li>
+						<li><a href="trainer">트레이너찾기</a></li>
+						<li><a href="financial_products">금융상품추천</a></li>
+						<li><a href="mypage">마이페이지</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<!-- <h1>This is Phantom, a free, fully responsive site<br />
+								template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1> -->
+								<!-- <p>당신을 위한 스마트 P.T 서비스</p> -->
+							</header>
+
+
+							<!--지점찾기 검색창-->
+								<div class="col-12">
+									<textarea id="center_search" placeholder="지점찾기"></textarea>
+								</div>
+
+								<div id="search_btn" class="col-12">
+									<ul class="actions">
+										<li><input type="submit" value="Search" class="primary" /></li>
+									</ul>
+								</div>
+
+							<!-- 지점 데이터 -->
+								<section id = "centerList" class="tiles">
+											<!-- <article class="style1">
+												<span class="image">
+													<img id= "center_image" src="images/pic01.jpg" alt="" />
+												</span>
+												<a href="generic.ejs">
+													<span id="center_name"></span>
+													<div class="content">
+														<span id="center_location"></span>
+													</div>
+												</a>
+											</article> -->
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+							<div class="inner">
+								<section>
+									<h2>Get in touch</h2>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<input type="text" name="name" id="name" placeholder="Name" />
+											</div>
+											<div class="field half">
+												<input type="email" name="email" id="email" placeholder="Email" />
+											</div>
+											<div class="field">
+												<textarea name="message" id="message" placeholder="Message"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><input type="submit" value="Send" class="primary" /></li>
+										</ul>
+									</form>
+								</section>
+								<section>
+									<h2>Follow</h2>
+									<ul class="icons">
+										<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+										<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+									</ul>
+								</section>
+								<ul class="copyright">
+									<li>&copy; Untitled. All rights reserved</li>
+								</ul>
+							</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
+
+			<script type="text/javascript" src="scripts/jquery.js"></script>
+			<script type="text/javascript" src="scripts/plugins.js"></script>
+			<script type="text/javascript" src="scripts/custom.js"></script>
+
+			<script>
+				$.ajax({
+				   url: 'http://localhost:3000/index',
+				   type: 'POST',
+				   headers: {
+				   },
+				   data: {
+				   },
+				   success: function (data) {
+
+						var centerList = data;
+						for(var i = 0; i < centerList.length; i++){
+							var centerElement = centerList[i];
+								$("#centerList").append(
+									'<article class="style' + (i+1) + '">' +
+										'<span class="image">' +
+											'<img id= "center_image" src="images/center0' + (i+1) + '.jpg" alt="" width=500 height=350 /></span>' +
+										'<a href="generic.ejs">' +
+											'<span>' + centerElement.center_name + '</span>' +
+											'<div class="content">' + '<span>' + centerElement.center_location + '</span>' + '</div>' +
+										'</a>' +
+									'</article>'
+								)
+						}
+
+						var search_center = $("#center_search").val();
+							$("#search_btn").click(
+								$(center_name).filter(search_center)
+							)
+				   }
+			   })
+		   </script>
+	</body>
+</html>

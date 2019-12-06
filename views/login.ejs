@@ -1,0 +1,47 @@
+<% include hf/header.ejs %>
+<div class="page-content">
+    <div data-height="cover-header" class="caption bottom-0">
+        <div class="caption-center">
+            <div class="content-boxed left-40 right-40">
+                <div class="content top-20 bottom-40">
+                    <h1 class="center-text uppercase ultrabold fa-3x">mu&fin</h1>
+                    <p class="center-text font-11 under-heading bottom-30 color-highlight">
+                    </p>
+                    <div class="input-style has-icon input-style-1 input-required">
+                        <i class="input-icon fa fa-user font-11"></i>
+                        <span>아이디</span>
+                        <em>(필수)</em>
+                        <input type="name" id='emailInput' placeholder="아이디">
+                    </div>
+                    <div class="input-style has-icon input-style-1 input-required">
+                        <i class="input-icon fa fa-lock font-11"></i>
+                        <span>비밀번호</span>
+                        <em>(필수)</em>
+                        <input type="password" id="passwordInput"  placeholder="비밀번호">
+                    </div>
+                    <div class="clear"></div>
+                    <a id='loginBtn' class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">로그인</a>
+                    <a href='/join' class="button button-full button-m shadow-large button-round-small bg-highlight top-10 bottom-0">회원가입</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#loginBtn").click(function(){
+        $.ajax({
+            url:'http://localhost:3000/login',
+            type : 'POST',
+            data : {
+                email : $("#emailInput").val(),
+                password : $("#passwordInput").val(),
+            },
+            success:function(data){
+                console.log(data);             
+                sessionStorage.setItem('jwtToken', data);
+                location.href = '/'
+            }
+        })
+    });
+</script>
+<% include hf/footer.ejs %>
